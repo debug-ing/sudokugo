@@ -1,8 +1,9 @@
 package sudokugo_test
 
 import (
-	"sudokugo"
 	"testing"
+
+	"github.com/debug-ing/sudokugo"
 )
 
 func TestSetAndGetLevel(t *testing.T) {

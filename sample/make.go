@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"sudokugo"
+
+	"github.com/debug-ing/sudokugo"
 )
 
 func main() {
