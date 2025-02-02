@@ -4,11 +4,13 @@ import (
 	"math/rand"
 )
 
+// RemoveNumbers removes numbers from the board
 func (s *Sudoku) RemoveNumbers() *Sudoku {
 	s.board = s.removeNumbers(s.board)
 	return s
 }
 
+// removeNumbers removes numbers from the board
 func (s *Sudoku) removeNumbers(board [9][9]int) [9][9]int {
 	levels := s.GetAllLevels()
 	count := levels[string(s.Level)]

@@ -2,6 +2,7 @@ package sudokugo
 
 import "math/rand/v2"
 
+// Level represents the level of the sudoku puzzle
 type Level string
 
 const (
@@ -13,6 +14,7 @@ const (
 	Extreme Level = "extreme"
 )
 
+// GetAllLevels returns all levels
 func (*Sudoku) GetAllLevels() map[string]int {
 	return map[string]int{
 		"easy":    rand.IntN(6) + 28,
@@ -24,10 +26,12 @@ func (*Sudoku) GetAllLevels() map[string]int {
 	}
 }
 
+// GetLevel returns the level of the sudoku puzzle
 func (s *Sudoku) GetLevel() string {
 	return string(s.Level)
 }
 
+// SetLevel sets the level of the sudoku puzzle
 func (s *Sudoku) SetLevel(level Level) *Sudoku {
 	s.Level = level
 	return s

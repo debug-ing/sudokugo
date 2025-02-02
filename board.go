@@ -5,11 +5,13 @@ import (
 	"math/rand"
 )
 
+// Sudoku represents the sudoku puzzle
 func (s *Sudoku) InitBoard() *Sudoku {
 	s.fillSudoku()
 	return s
 }
 
+// Solve sudoku puzzle
 func (s *Sudoku) Solve() *Sudoku {
 	status := s.solveSudoku()
 	if !status {
@@ -18,15 +20,18 @@ func (s *Sudoku) Solve() *Sudoku {
 	return s
 }
 
+// SetBoard sets the board
 func (s *Sudoku) SetBoard(board [9][9]int) *Sudoku {
 	s.board = board
 	return s
 }
 
+// GetBoard returns the board
 func (s *Sudoku) GetBoard() [9][9]int {
 	return s.board
 }
 
+// Print prints the board
 func (s *Sudoku) Print() {
 	for _, row := range s.board {
 		for _, num := range row {
@@ -40,6 +45,7 @@ func (s *Sudoku) Print() {
 	}
 }
 
+// ssValid checks if the number is valid
 func (s *Sudoku) isValid(board [9][9]int, row, col, num int) bool {
 	boxRow, boxCol := (row/3)*3, (col/3)*3
 	for i := 0; i < 9; i++ {
@@ -51,6 +57,7 @@ func (s *Sudoku) isValid(board [9][9]int, row, col, num int) bool {
 	return true
 }
 
+// fillSudoku fills the sudoku puzzle
 func (s *Sudoku) fillSudoku() bool {
 	for row := 0; row < s.size; row++ {
 		for col := 0; col < s.size; col++ {
@@ -72,6 +79,7 @@ func (s *Sudoku) fillSudoku() bool {
 	return true
 }
 
+// solveSudoku solves the sudoku puzzle
 func (s *Sudoku) solveSudoku() bool {
 	for row := 0; row < s.size; row++ {
 		for col := 0; col < s.size; col++ {
@@ -92,6 +100,7 @@ func (s *Sudoku) solveSudoku() bool {
 	return true
 }
 
+// GetStatusBoard returns the status of the board
 func (s *Sudoku) GetStatusBoard() bool {
 	for _, row := range s.board {
 		for _, num := range row {
