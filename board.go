@@ -45,16 +45,24 @@ func (s *Sudoku) Print() {
 	}
 }
 
-// ssValid checks if the number is valid
-func (s *Sudoku) isValid(board [9][9]int, row, col, num int) bool {
+// isValid checks if the number is valid
+func (s *Sudoku) isValid(row, col, num int) bool {
 	boxRow, boxCol := (row/3)*3, (col/3)*3
 	for i := 0; i < 9; i++ {
-		if board[row][i] == num || board[i][col] == num ||
-			board[boxRow+i/3][boxCol+i%3] == num {
+		if s.board[row][i] == num || s.board[i][col] == num ||
+			s.board[boxRow+i/3][boxCol+i%3] == num {
 			return false
 		}
 	}
 	return true
+}
+
+// IsValid checks if the number is valid
+func (s *Sudoku) IsValid(row, col, num int) bool {
+	if s.board[row][col] == 0 {
+		return s.isValid(row, col, num)
+	}
+	return false
 }
 
 // fillSudoku fills the sudoku puzzle
@@ -64,7 +72,7 @@ func (s *Sudoku) fillSudoku() bool {
 			if s.board[row][col] == 0 {
 				numbers := rand.Perm(9)
 				for _, num := range numbers {
-					if s.isValid(s.board, row, col, num+1) {
+					if s.isValid(row, col, num+1) {
 						s.board[row][col] = num + 1
 						if s.fillSudoku() {
 							return true
@@ -85,7 +93,7 @@ func (s *Sudoku) solveSudoku() bool {
 		for col := 0; col < s.size; col++ {
 			if s.board[row][col] == 0 {
 				for num := 1; num <= 9; num++ {
-					if s.isValid(s.board, row, col, num) {
+					if s.isValid(row, col, num) {
 						s.board[row][col] = num
 						if s.solveSudoku() {
 							return true

@@ -11,4 +11,6 @@ func main() {
 	fmt.Print("Sudoku Board\n", data)
 	result := sudokugo.NewSudoku().SetBoard(data).Solve().GetStatusBoard()
 	fmt.Println(result)
+	board := sudokugo.NewSudoku().SetLevel(sudokugo.Extreme).InitBoard().RemoveNumbers()
+	fmt.Println(board.IsValid(1, 1, 1))
 }
